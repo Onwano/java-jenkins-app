@@ -1,12 +1,21 @@
 pipeline{
 
   agent any
+  
+  tools {
+    // '<name of tool>' given in the manage jenkins > Tools > Maven Installation
+    maven 'Maven 3.9'
+  }
 
   stages{
 
-      stage('build'){
+      stage('building the application'){
         steps{
-          echo "Build working..."
+            sh 'echo "========Building Java Application============"'
+            sh 'mvn -v'
+            sh 'mvn clean package -B -DskipTests'
+            sh 'echo "======Building Java Application completed====="'
+          
         }
       }
  
